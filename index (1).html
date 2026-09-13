@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rumbo a Leonida — Todo sobre GTA VI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#160B2E;
+    --night-deep:#0D0620;
+    --paper:#F4EFFB;
+    --pink:#FF2E93;
+    --teal:#21E6C1;
+    --orange:#FF8A3D;
+    --ink:#1B1330;
+    --muted:#7A6F98;
+    --rule: rgba(244,239,251,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bungee', sans-serif;
+    font-weight:400;
+    line-height:1.05;
+    color:var(--night);
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header.site{
+    background:var(--night-deep);
+    border-bottom:3px solid var(--pink);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:20px; padding-bottom:20px;
+    flex-wrap:wrap; gap:14px;
+  }
+  .brand{
+    font-family:'Bungee', sans-serif;
+    font-size:1.3rem;
+    color:var(--paper);
+  }
+  .brand span{color:var(--teal);}
+  .navlinks{ display:flex; gap:26px; flex-wrap:wrap; }
+  .navlinks a{
+    color:var(--paper);
+    font-size:0.95rem;
+    font-weight:500;
+    opacity:0.85;
+    border-bottom:2px solid transparent;
+    padding-bottom:2px;
+    transition:border-color 0.15s ease, opacity 0.15s ease;
+  }
+  .navlinks a:hover{ opacity:1; border-color:var(--teal); }
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg, var(--night-deep) 0%, var(--night) 60%, #2A1350 100%);
+    position:relative;
+    overflow:hidden;
+    padding:80px 0 0;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:40px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.6vw, 4.4rem);
+    color:var(--paper);
+    max-width:11ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--pink);
+    text-shadow:0 0 18px rgba(255,46,147,0.55);
+  }
+  .hero p.sub{
+    color:#C9BEE8;
+    font-size:1.08rem;
+    max-width:44ch;
+    margin-top:18px;
+  }
+  .facts{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:26px;
+  }
+  .facts span{
+    font-size:0.88rem;
+    color:var(--paper);
+    background:rgba(244,239,251,0.08);
+    border:1px solid var(--rule);
+    padding:7px 14px;
+  }
+  .countdown{
+    background:rgba(244,239,251,0.06);
+    border:1px solid var(--rule);
+    padding:28px;
+  }
+  .countdown .label{ color:#C9BEE8; font-size:0.95rem; margin-bottom:14px; }
+  .countdown-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+  }
+  .countdown-grid div{ text-align:center; }
+  .countdown-grid .num{
+    font-family:'Bungee', sans-serif;
+    font-size:2rem;
+    color:var(--teal);
+  }
+  .countdown-grid .unit{ font-size:0.75rem; color:#9C8FC2; margin-top:4px; }
+
+  .skyline{ width:100%; height:110px; display:block; margin-top:50px; }
+
+  /* SECTIONS */
+  main.wrap{ padding-top:56px; }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin:0 0 24px;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:10px;
+    flex-wrap:wrap; gap:8px;
+  }
+  .section-head h2{ font-size:1.5rem; }
+  .section-head .sub{ color:var(--muted); font-size:0.95rem; }
+
+  /* FEATURED */
+  .featured{
+    background:var(--night-deep);
+    color:var(--paper);
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+    align-items:center;
+    margin-bottom:60px;
+  }
+  .featured h2{ color:var(--paper); font-size:1.9rem; margin-bottom:14px; }
+  .featured p{ color:#C9BEE8; margin-bottom:18px; }
+  .readmore{
+    font-weight:600;
+    border-bottom:2px solid var(--teal);
+    padding-bottom:2px;
+    display:inline-block;
+  }
+  .featured-art svg{ width:100%; height:auto; }
+
+  /* FACT LIST */
+  .factlist{
+    list-style:none;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:0;
+    margin-bottom:60px;
+    border-top:1px solid var(--rule2, #ddd3f2);
+  }
+  .factlist li{
+    padding:20px 0;
+    border-bottom:1px solid #ddd3f2;
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:14px;
+  }
+  .factlist li:nth-child(odd){ padding-right:24px; border-right:1px solid #ddd3f2; }
+  .factlist li:nth-child(even){ padding-left:24px; }
+  .factlist .k{ font-weight:700; color:var(--pink); font-size:0.92rem; }
+  .factlist .v{ color:var(--ink); font-size:0.98rem; }
+
+  /* NEWS LIST */
+  .newslist{ list-style:none; margin-bottom:60px; }
+  .newslist li{
+    display:grid;
+    grid-template-columns:110px 1fr auto;
+    gap:20px;
+    align-items:center;
+    padding:22px 0;
+    border-bottom:1px solid #ddd3f2;
+  }
+  .newslist .date{
+    font-family:'Bungee', sans-serif;
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+  .newslist h3{ font-size:1.15rem; font-weight:600; font-family:'Space Grotesk',sans-serif; margin-bottom:4px; }
+  .newslist p{ color:var(--muted); font-size:0.95rem; }
+  .newslist .cat{
+    font-size:0.82rem;
+    font-family:'Bungee', sans-serif;
+    color:var(--night-deep);
+    background:var(--teal);
+    padding:5px 12px;
+    white-space:nowrap;
+    height:fit-content;
+  }
+
+  /* CONSOLE COMPARE */
+  .compare{
+    margin-bottom:60px;
+  }
+  .compare-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .console-card{
+    border:2px solid var(--ink);
+    padding:26px;
+  }
+  .console-card h3{ font-size:1.2rem; margin-bottom:12px; }
+  .console-card ul{ list-style:none; }
+  .console-card li{
+    padding:8px 0;
+    border-bottom:1px solid var(--rule2, #eee2fb);
+    font-size:0.95rem;
+    color:var(--muted);
+  }
+
+  /* CATEGORIES */
+  .categories{
+    margin-bottom:60px;
+    padding:28px 0;
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    display:flex; flex-wrap:wrap; gap:8px 36px;
+  }
+  .categories a{
+    font-family:'Bungee', sans-serif;
+    font-size:1rem;
+    color:var(--night);
+  }
+  .categories a:hover{ color:var(--pink); }
+
+  /* NEWSLETTER */
+  .newsletter{
+    background:var(--night-deep);
+    color:var(--paper);
+    padding:56px 0;
+  }
+  .newsletter .wrap{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:36px;
+    align-items:center;
+  }
+  .newsletter h2{ color:var(--paper); font-size:1.7rem; margin-bottom:10px; }
+  .newsletter p{ color:#C9BEE8; max-width:42ch; }
+  .subform{ display:flex; border-bottom:2px solid var(--teal); }
+  .subform input{
+    flex:1; background:transparent; border:none;
+    color:var(--paper); font-family:'Space Grotesk', sans-serif;
+    font-size:1.02rem; padding:12px 4px; outline:none;
+  }
+  .subform input::placeholder{ color:#8F7FBE; }
+  .subform button{
+    background:var(--pink); border:none; color:var(--paper);
+    font-family:'Bungee', sans-serif; font-size:0.85rem;
+    padding:0 24px; cursor:pointer; transition:background 0.15s ease;
+  }
+  .subform button:hover{ background:#e01e7d; }
+
+  /* DISCLAIMER + FOOTER */
+  .disclaimer{
+    font-size:0.82rem;
+    color:var(--muted);
+    padding:22px 0;
+    border-top:1px solid #ddd3f2;
+  }
+  footer{
+    padding:10px 0 48px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    color:var(--muted); font-size:0.88rem;
+  }
+
+  @media (max-width: 760px){
+    .hero-grid{ grid-template-columns:1fr; padding-bottom:20px; }
+    .featured{ grid-template-columns:1fr; padding:26px; }
+    .factlist{ grid-template-columns:1fr; }
+    .factlist li:nth-child(odd){ border-right:none; padding-right:0; }
+    .factlist li:nth-child(even){ padding-left:0; }
+    .newslist li{ grid-template-columns:70px 1fr; }
+    .newslist .cat{ grid-column:2; }
+    .compare-grid{ grid-template-columns:1fr; }
+    .newsletter .wrap{ grid-template-columns:1fr; }
+    .countdown-grid{ grid-template-columns:repeat(4,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="wrap">
+    <div class="brand">Rumbo a <span>Leonida</span></div>
+    <div class="navlinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#lo-que-sabemos">Lo que sabemos</a>
+      <a href="#consolas">PS5 vs Xbox</a>
+      <a href="#suscribete">Suscríbete</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Leonida se acerca. <em>Cuenta atrás.</em></h1>
+        <p class="sub">Noticias, fechas y todo lo confirmado sobre GTA VI, el regreso de Rockstar a Vice City — sin rumores infundados, solo lo que sabemos seguro.</p>
+        <div class="facts">
+          <span>19 de noviembre de 2026</span>
+          <span>PS5 y Xbox Series X|S</span>
+          <span>Leonida, Florida ficticia</span>
+        </div>
+      </div>
+      <div class="countdown">
+        <div class="label">Faltan para el lanzamiento</div>
+        <div class="countdown-grid" id="countdown">
+          <div><div class="num" id="cd-days">--</div><div class="unit">días</div></div>
+          <div><div class="num" id="cd-hours">--</div><div class="unit">horas</div></div>
+          <div><div class="num" id="cd-min">--</div><div class="unit">min</div></div>
+          <div><div class="num" id="cd-sec">--</div><div class="unit">seg</div></div>
+        </div>
+      </div>
+    </div>
+    <svg class="skyline" viewBox="0 0 1100 110" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FF8A3D" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#160B2E" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="1100" height="110" fill="url(#sky)"/>
+      <g fill="#0D0620">
+        <rect x="40" y="40" width="26" height="70"/>
+        <rect x="80" y="20" width="22" height="90"/>
+        <rect x="120" y="55" width="30" height="55"/>
+        <rect x="900" y="30" width="24" height="80"/>
+        <rect x="940" y="50" width="20" height="60"/>
+        <rect x="980" y="15" width="28" height="95"/>
+        <rect x="1030" y="45" width="22" height="65"/>
+      </g>
+      <g stroke="#21E6C1" stroke-width="1.5" opacity="0.7">
+        <line x1="66" y1="40" x2="66" y2="110"/>
+        <line x1="150" y1="55" x2="150" y2="110"/>
+        <line x1="924" y1="30" x2="924" y2="110"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="featured">
+    <div>
+      <h2>Jason y Lucia, contra todo pronóstico</h2>
+      <p>La historia sigue a una pareja de protagonistas que se ven envueltos en una conspiración criminal a lo largo del estado de Leonida, después de que un golpe aparentemente sencillo salga mal. Es la primera vez en la saga que Rockstar construye la trama alrededor de dos protagonistas jugables desde el inicio.</p>
+      <a class="readmore" href="#">Leer el análisis completo</a>
+    </div>
+    <div class="featured-art">
+      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#2A1350"/>
+        <defs>
+          <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF8A3D"/>
+            <stop offset="100%" stop-color="#FF2E93"/>
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="170" r="70" fill="url(#sun)" opacity="0.85"/>
+        <rect x="0" y="200" width="400" height="100" fill="#160B2E"/>
+        <g fill="#0D0620">
+          <rect x="30" y="150" width="14" height="90"/>
+          <ellipse cx="37" cy="145" rx="24" ry="10"/>
+          <rect x="330" y="130" width="14" height="110"/>
+          <ellipse cx="337" cy="125" rx="26" ry="11"/>
+        </g>
+        <g stroke="#21E6C1" stroke-width="2" opacity="0.8">
+          <line x1="0" y1="220" x2="400" y2="220"/>
+          <line x1="0" y1="240" x2="400" y2="240"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section id="lo-que-sabemos">
+    <div class="section-head">
+      <h2>Lo que sabemos seguro</h2>
+      <span class="sub">confirmado por Rockstar y Take-Two</span>
+    </div>
+    <ul class="factlist">
+      <li><span class="k">Lanzamiento</span><span class="v">19 de noviembre de 2026</span></li>
+      <li><span class="k">Plataformas</span><span class="v">PlayStation 5 y Xbox Series X|S (sin fecha de PC confirmada)</span></li>
+      <li><span class="k">Ambientación</span><span class="v">Estado ficticio de Leonida, con Vice City como epicentro</span></li>
+      <li><span class="k">Otras zonas</span><span class="v">Leonida Keys, Port Gellhorn, Ambrosia, Grassrivers y el Parque Nacional Mount Kalaga</span></li>
+      <li><span class="k">Protagonistas</span><span class="v">Jason y Lucia</span></li>
+      <li><span class="k">Precio (EE. UU.)</span><span class="v">79,99 $ edición estándar, 99,99 $ edición Ultimate</span></li>
+    </ul>
+  </section>
+
+  <section id="noticias">
+    <div class="section-head">
+      <h2>Últimas noticias</h2>
+      <span class="sub">actualizado esta semana</span>
+    </div>
+    <ul class="newslist">
+      <li>
+        <span class="date">27 ago</span>
+        <div>
+          <h3>Se publica el "Extended Look": 20 minutos de jugabilidad</h3>
+          <p>Rockstar estrenó primero en Netflix y después en YouTube un vistazo extendido con el gameplay más completo mostrado hasta la fecha.</p>
+        </div>
+        <span class="cat">Tráiler</span>
+      </li>
+      <li>
+        <span class="date">4 ago</span>
+        <div>
+          <h3>Take-Two vuelve a confirmar la fecha de noviembre</h3>
+          <p>En su último informe financiero, la compañía descartó los rumores de un nuevo retraso y reafirmó el lanzamiento del 19 de noviembre.</p>
+        </div>
+        <span class="cat">Fecha</span>
+      </li>
+      <li>
+        <span class="date">28 jul</span>
+        <div>
+          <h3>Abren las reservas en PS5 y Xbox Series X|S</h3>
+          <p>Ya se puede reservar el juego en ambas plataformas, con contenido adicional incluido para quienes reserven antes del lanzamiento.</p>
+        </div>
+        <span class="cat">Reservas</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="compare" id="consolas">
+    <div class="section-head">
+      <h2>PS5 vs Xbox Series X|S</h2>
+      <span class="sub">¿en qué consola jugarlo?</span>
+    </div>
+    <div class="compare-grid">
+      <div class="console-card">
+        <h3>PlayStation 5</h3>
+        <ul>
+          <li>Consola con la mayor base de jugadores de la saga GTA</li>
+          <li>Historial de contenido exclusivo temporal en anteriores lanzamientos de Rockstar</li>
+          <li>Aún sin confirmar si aprovechará las mejoras de PS5 Pro</li>
+        </ul>
+      </div>
+      <div class="console-card">
+        <h3>Xbox Series X|S</h3>
+        <ul>
+          <li>Mismo día de lanzamiento que PS5, sin ventana de exclusividad</li>
+          <li>Series S limitada en resolución frente a Series X</li>
+          <li>Sin confirmación aún sobre catálogo de Game Pass</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories">
+    <a href="#">Noticias</a>
+    <a href="#">Mapa de Leonida</a>
+    <a href="#">Personajes</a>
+    <a href="#">Comparativas</a>
+    <a href="#">Rumores</a>
+  </section>
+
+</main>
+
+<section class="newsletter" id="suscribete">
+  <div class="wrap">
+    <div>
+      <h2>No te pierdas ni un tráiler</h2>
+      <p>Un aviso directo a tu correo cada vez que Rockstar publique algo nuevo. Sin spam, sin relleno.</p>
+    </div>
+    <form class="subform" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Gracias por suscribirte (formulario de ejemplo).');">
+      <input type="email" placeholder="tu@correo.com" required>
+      <button type="submit">Suscribirme</button>
+    </form>
+  </div>
+</section>
+
+<div class="wrap">
+  <p class="disclaimer">Rumbo a Leonida es un sitio de fans no oficial. No está afiliado, patrocinado ni respaldado por Rockstar Games ni Take-Two Interactive. Grand Theft Auto y GTA VI son marcas de sus respectivos propietarios.</p>
+  <footer>
+    <div>Rumbo a Leonida</div>
+    <div>Actualizado cada semana hasta el lanzamiento</div>
+  </footer>
+</div>
+
+<script>
+  const launchDate = new Date("2026-11-19T00:00:00");
+  function updateCountdown(){
+    const now = new Date();
+    let diff = launchDate - now;
+    if(diff < 0) diff = 0;
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const mins = Math.floor((diff / (1000*60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
